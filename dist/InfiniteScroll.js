@@ -173,6 +173,10 @@ var InfiniteScroll = (function(_Component) {
         var scrollEl = window;
         if (this.props.useWindow === false) {
           scrollEl = this.scrollComponent.parentNode;
+
+          if (this.props.scrollableSelector) {
+            scrollEl = document.querySelector(this.props.scrollableSelector);
+          }
         }
 
         scrollEl.addEventListener(
@@ -329,6 +333,7 @@ InfiniteScroll.propTypes = {
   threshold: _propTypes2.default.number,
   useCapture: _propTypes2.default.bool,
   useWindow: _propTypes2.default.bool,
+  scrollableSelector: _propTypes2.default.string,
 };
 InfiniteScroll.defaultProps = {
   element: 'div',

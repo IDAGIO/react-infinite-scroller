@@ -15,6 +15,7 @@ export default class InfiniteScroll extends Component {
     threshold: PropTypes.number,
     useCapture: PropTypes.bool,
     useWindow: PropTypes.bool,
+    scrollableSelector: PropTypes.string,
   };
 
   static defaultProps = {
@@ -94,6 +95,10 @@ export default class InfiniteScroll extends Component {
     let scrollEl = window;
     if (this.props.useWindow === false) {
       scrollEl = this.scrollComponent.parentNode;
+
+      if (this.props.scrollableSelector) {
+        scrollEl = document.querySelector(this.props.scrollableSelector);
+      }
     }
 
     scrollEl.addEventListener(
